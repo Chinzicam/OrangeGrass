@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.FriendApplyMapper">
+    <select id="selectFriendApplyRecordVO" resultType="com.czc.Entity.VO.FriendApplyVO">
+        SELECT
+        friend_apply_record.friend_apply_record_id,
+        friend_apply_record.from_user_id,
+        friend_apply_record.target_user_id,
+        friend_apply_record.apply_reason,
+        friend_apply_record.apply_time,
+        friend_apply_record.apply_result,
+        u.username AS from_username,
+        `user`.username AS target_username
+        FROM
+        friend_apply_record
+        left JOIN
+        `user` u
+        ON
+        friend_apply_record.from_user_id = u.user_id
+        left JOIN
+        `user`
+        ON
+        friend_apply_record.target_user_id = `user`.user_id
+        where 1 = 1
+        <if test="fromUserId != null and fromUserId != ''">
+            and from_user_id = #{fromUserId}
+        </if>
+        <if test="targetUserId != null and targetUserId != ''">
+            and target_user_id = #{targetUserId}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.FileMapper">
+
+    <resultMap id="File" type="com.czc.Entity.FileEntity">
+        <id property="id" column="file_id"></id>
+        <id property="fileName" column="file_name"></id>
+        <id property="md5" column="md5"></id>
+        <id property="fileLocation" column="file_location"></id>
+        <id property="fileSize" column="file_size"></id>
+        <id property="createTime" column="create_time"></id>
+        <id property="minetype" column="minetype"></id>
+    </resultMap>
+
+    <select id="selectUncheckedImages" resultMap="File">
+        SELECT * FROM `file` where minetype like 'image%' and nsfw_score = 0
+    </select>
+
+    <select id="selectCheckedImages" resultMap="File">
+        SELECT * FROM `file` where minetype like 'image%' and nsfw_score > 0 order by nsfw_score desc
+    </select>
+
+    <select id="selectByMd5" parameterType="String" resultMap="File">
+        select * from file where md5 = #{md5} and is_delete = 0 limit 1
+    </select>
+
+    <select id="selectThumbnailByPicId" parameterType="String" resultType="com.czc.Entity.ThumbnailEntity">
+        select * from thumbnail where file_id = #{id} limit 1
+    </select>
+
+    <select id="selectByUserId" parameterType="String" resultMap="File">
+        select * from file where file_id in
+                                 (select file_id from user_file where user_id = #{userId} and is_delete = 0) and is_delete = 0
+    </select>
+    <select id="selectByFolderId" parameterType="String" resultMap="File">
+        select * from file where file_id in (
+            select file_id from user_file where id in (
+                select x_id from folder_x where folder_id = #{folderId} and is_delete = 0
+            ) and is_delete = 0
+        ) and is_delete = 0
+    </select>
+
+<!--    <select id="selectByUserId" parameterType="String" resultMap="File">-->
+<!--    select user_file.file_name , user_file.file_id , file_location , file_size,-->
+<!--           file.create_time, file.update_time , md5,minetype,user_file.is_delete-->
+<!--    from user_file , file where file.file_id = user_file.file_id-->
+<!--                            and user_file.user_id = #{userId}-->
+<!--    </select>-->
+
+
+</mapper>

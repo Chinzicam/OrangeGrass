@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.VoMapper">
+
+    <resultMap id="Folder2X" type="com.czc.Entity.DTO.Folder2XDTO">
+        <id property="id" column="id"></id>
+        <id property="folderId" column="folder_id"></id>
+        <id property="xId" column="x_id"></id>
+        <id property="xType" column="x_type"></id>
+    </resultMap>
+    <resultMap id="User2Folder" type="com.czc.Entity.DTO.User2FolderDTO">
+        <id property="id" column="id"></id>
+        <id property="userId" column="user_id"></id>
+        <id property="folderId" column="folder_id"></id>
+    </resultMap>
+    <resultMap id="User2File" type="com.czc.Entity.DTO.User2FileDTO">
+        <id property="id" column="id"></id>
+        <id property="userId" column="user_id"></id>
+        <id property="fileId" column="file_id"></id>
+        <id property="fileName" column="file_name"></id>
+    </resultMap>
+    <resultMap id="EntityList" type="com.czc.Entity.DTO.EntityListDTO">
+        <id property="f2xId" column="x_id"></id>
+        <id property="type" column="x_type"></id>
+        <id property="folderName" column="folder_name"></id>
+        <id property="fileName" column="file_name"></id>
+        <id property="fileId" column="file_id"></id>
+        <id property="fileSize" column="file_size"></id>
+        <id property="isBan" column="is_ban"></id>
+        <id property="fileCreateTime" column="file_create_time"></id>
+        <id property="fileUpdateTime" column="file_update_time"></id>
+        <id property="folderUpdateTime" column="folder_update_time"></id>
+        <id property="folderCreateTime" column="folder_create_time"></id>
+    </resultMap>
+    <select id="selectUser2FileDeleted" resultMap="User2File">
+        select * from user_file where id = #{u2fId} and is_delete = 1
+    </select>
+    <select id="selectDeletedFiles" resultMap="User2File">
+        select * from user_file where is_delete = 1 and user_id = #{userId}
+    </select>
+    <select id="selectEntityByFolder" resultMap="EntityList">
+        select x_id,x_type ,folder_name,c.file_name,c.file_id,file_size,is_ban,create_time as file_create_time,update_time as file_update_time,folder_create_time,folder_update_time from
+            (
+                select x_id,x_type,folder_name,file_name,file_id,folder_create_time,folder_update_time
+                from
+                    (select x_id,x_type,folder_name,create_time as folder_create_time,update_time as folder_update_time from
+                        (select x_id,x_type from folder_x where folder_id = #{folderId} and is_delete = 0 and
+                            (x_id in (select id from user_file where is_delete = 0 and file_id in (select file_id from file where is_delete = 0) ) or x_id in (select folder_id from user_folder where is_delete = 0))
+                        ) a left join
+                        folder on folder.folder_id = a.x_id) b left join user_file
+                                                                         on user_file.id = x_id) c left join file on file.file_id = c.file_id
+    </select>
+
+    <insert id="insertU2F" parameterType="com.czc.Entity.DTO.User2FileDTO">
+        insert into user_file (id,user_id,file_id,file_name)
+        values (#{id},#{userId},#{fileId},#{fileName})
+    </insert>
+
+    <update id="deleteFolder2X" parameterType="String">
+        update folder_x
+        set is_delete = 1
+        where id = #{id}
+    </update>
+    <update id="deleteUser2File" parameterType="String">
+        update user_file
+        set is_delete = 1
+        where id = #{id}
+    </update>
+    <select id="getFolder2XVObyUserId" parameterType="String" resultMap="Folder2X">
+        select * from folder_x where folder_id in
+        (select folder_id from user_folder where user_id = #{userId} and is_delete = 0) and is_delete = 0
+    </select>
+    <select id="getUser2FileVOById" parameterType="String" resultMap="User2File">
+        select * from user_file where id = #{id} and is_delete = 0
+    </select>
+    <select id="getUser2FileVOByUserId" parameterType="String" resultMap="User2File">
+        select * from user_file where user_id = #{userId} and is_delete = 0
+    </select>
+    <update id="updateU2FVO" parameterType="com.czc.Entity.DTO.User2FolderDTO" >
+        update user_file
+        set file_name = #{FileName}
+        where id = #{id} and is_delete = 0
+    </update>
+    <select id="selectFolder2XVOByFolderId" resultMap="Folder2X" parameterType="String">
+        select * from folder_x where folder_id = #{folderId} and is_delete = 0
+    </select>
+    <insert id="insertUserFolder" parameterType="com.czc.Entity.DTO.User2FolderDTO">
+        insert into user_folder (id,user_id,folder_id)
+        values(#{id},#{userId},#{folderId})
+    </insert>
+
+    <update id="updateU2FVOByFileId" parameterType="com.czc.Entity.DTO.User2FolderDTO">
+        update user_file
+        set file_name = #{FileName}
+        where file_id = #{FileId} and is_delete = 0
+    </update>
+</mapper>

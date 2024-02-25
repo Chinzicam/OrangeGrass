@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.RecycleMapper">
+    <resultMap id="User2File" type="com.czc.Entity.DTO.User2FileDTO">
+        <id property="id" column="id"></id>
+        <id property="userId" column="user_id"></id>
+        <id property="fileId" column="file_id"></id>
+        <id property="fileName" column="file_name"></id>
+    </resultMap>
+    <select id="selectU2F" resultMap="User2File">
+        select * from user_file where id = #{u2fId}
+    </select>
+    <select id="selectFileByU2FId" resultType="com.czc.Entity.FileEntity">
+        select * from file where file_id in
+                                 (select file_id from user_file where id = #{u2fId})
+    </select>
+    <update id="recycleFile">
+        update user_file
+        set is_delete = 0
+        where id = #{u2fId}
+    </update>
+    <delete id="deleteFile">
+        delete
+        from user_file
+        where id = #{u2fId}
+    </delete>
+</mapper>

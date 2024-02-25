@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.UserFriendMapper">
+    <select id="selectFriendVOList" resultType="com.czc.Entity.VO.FriendVO">
+        select b.id,b.user_id,b.username,b.friend_id,user.username friend_username,
+               (select count(*) from chat where from_user_id = b.friend_id and target_user_id = b.user_id and unread = 1) unread_message_number
+                ,b.create_time from
+            (select a.id,a.user_id,a.username,a.friend_id,a.create_time from
+                (select user_friend.id,user_friend.user_id,user.username,user_friend.friend_id,user_friend.create_time from user_friend left join user on user_friend.user_id = user.user_id where user_friend.user_id = #{userId}) a) b left join user on user.user_id = b.friend_id
+    </select>
+
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.UserMapper">
+
+    <insert id="insertUserFolder" parameterType="com.czc.Entity.DTO.User2FolderDTO">
+        insert into user_folder  (id,user_id,folder_id) values (#{id},#{userId},#{folderId})
+    </insert>
+    <insert id="insertUserFile" parameterType="com.czc.Entity.DTO.User2FileDTO">
+        insert into user_file (id,user_id,file_id,file_name) values (#{id},#{userId},#{fileId},#{fileName})
+    </insert>
+</mapper>
