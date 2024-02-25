@@ -1,0 +1,224 @@
+<template>
+  <div class="upload-list-wrapper">
+    <div class="upload-list">
+      <div class="uploading" v-for="uploadFile in this.uploadFileList">
+        <div class="file-info" style="display: flex">
+          <span class="fileName" style="display:flex;justify-content: flex-start;align-items: center;font-size: 12px">{{ uploadFile.name }}</span>
+          <span class="fileSize" style="font-size: 12px;display: flex;justify-content: flex-end;align-items: center">{{ formatSize(uploadFile.size) }}</span>
+        </div>
+
+        <div class="parse">
+          <span>解析进度： </span>
+          <el-progress
+            :text-inside="true"
+            :stroke-width="16"
+            :percentage="uploadFile.parsePercentage"
+          >
+          </el-progress>
+        </div>
+        <div class="progress">
+          <span>上传进度：</span>
+
+          <el-progress
+            :text-inside="true"
+            :stroke-width="16"
+            :percentage="uploadFile.uploadPercentage"
+          >
+          </el-progress>
+          <span
+            v-if="
+            (uploadFile.uploadPercentage > 0) &
+            (uploadFile.uploadPercentage < 100)
+          "
+          >
+          <span style="width: 16px;height: 16px" class="uploadSpeed">{{ uploadFile.uploadSpeed }}</span>
+
+          <span  link @click="changeUploadingStop(uploadFile)">
+            <img width="16px" height="16px" src="@/assets/images/start.png" v-if="uploadFile.uploadingStop == false">
+            <!--            <el-icon size="20" v-if="uploadFile.uploadingStop == false"-->
+            <!--            >好啊</el-icon>-->
+            <img width="16px" height="16px" src="@/assets/images/pause.png" v-else>
+            <!--            <el-icon size="20" v-else>不好</el-icon>-->
+          </span>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Fileservice from "../../../../utils/FileRequest";
+import {getUploadChunkSize} from "../../../../main";
+const request = Fileservice
+export default {
+  name: "uploadList",
+  props: {
+    currentFolder: Object,
+    userId: String,
+    uploadFileList: Array
+  },
+  methods: {
+    //换算文件的大小单位
+    formatSize(val) {
+      if(val === 0) return "0 B"
+      let k = 1024;
+      let sizes = ['B','KB','MB','GB','PB','TB','EB','ZB','YB'],
+        i = Math.floor(Math.log(val) / Math.log(k));
+      return (val / Math.pow(k,i)).toPrecision(3) + "" + sizes[i]
+    },
+    //点击暂停或开始上传
+    changeUploadingStop(uploadFile) {
+      uploadFile.uploadingStop = !uploadFile.uploadingStop;
+      if (!uploadFile.uploadingStop) {
+        this.uploadChunk(uploadFile.file, 1, uploadFile);
+      }
+    },
+    //上传文件分片
+    uploadChunk(file, index, uploadFile) {
+      let chunkSize = getUploadChunkSize()
+      let chunkTotal = Math.ceil(file.size / chunkSize);
+      if (index <= chunkTotal) {
+        // 根据是否暂停，确定是否继续上传
+
+        // console.log("4.上传分片");
+
+        let startTime = new Date().valueOf();
+
+
+        let exit = uploadFile.chunkList.includes(index);
+        // console.log("是否存在",exit);
+
+
+        if (!exit) {
+          //    console.log("3.3上传文件",uploadingStop);
+          if (!uploadFile.uploadingStop) {
+            // 分片上传，同时计算进度条和上传速度
+            // 已经上传的不在上传、
+            // 上传完成后提示，上传成功
+            // console.log("上传分片1",index);
+            let form = new FormData();
+            let start = (index - 1) * chunkSize;
+            let end =
+              index * chunkSize >= file.size ? file.size : index * chunkSize;
+            let chunk = file.slice(start, end);
+            //  downloadBlob(chunk,file)
+            //  console.log("chunk",chunk);
+
+            form.append("chunk", chunk);
+            form.append("index", index);
+            form.append("chunkTotal", chunkTotal);
+            form.append("chunkSize", chunkSize);
+            form.append("md5", uploadFile.md5);
+            form.append("fileSize", file.size);
+            form.append("fileName", file.name);
+
+            form.append("fileType", uploadFile.type)
+            form.append("folderId", this.currentFolder.id);
+            form.append("userId", this.userId);
+            // console.log("上传分片", index);
+
+            request({
+              url: "/api/file/upload/chunk",
+              method: "post",
+              data: form,
+            }).then((res) => {
+              if (res.code === 1) {
+                let endTime = new Date().valueOf();
+                let timeDif = (endTime - startTime) * 1000 ;
+                // console.log("上传文件大小",formatSize(chunkSize));
+                // console.log("耗时",timeDif);
+                // console.log("then",index);
+
+                // uploadSpeed = (chunkSize/(1024*1024))  / timeDif +" M / s"
+
+                uploadFile.uploadSpeed = (chunkSize / timeDif).toFixed(1) + " M/s";
+                // console.log(res.data.data);
+                //  console.log("f2",uploadFile);
+                uploadFile.chunkList.push(index);
+                //  console.log("f3",uploadFile);
+
+                uploadFile.uploadPercentage = parseInt(
+                  (uploadFile.chunkList.length / chunkTotal) * 100);
+                // console.log("上传进度",uploadFile.uploadPercentage);
+
+                if (index == chunkTotal) {
+                  this.$emit('setFile')
+                  this.$message.success("上传成功")
+                }
+
+                this.uploadChunk(file, index + 1, uploadFile);
+              } else {
+                this.$message.error(res.msg)
+              }
+            });
+          }
+        } else {
+          uploadFile.uploadPercentage = parseInt(
+            (uploadFile.chunkList.length / chunkTotal) * 100
+          );
+
+          this.uploadChunk(file, index + 1, uploadFile);
+        }
+        // }
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.upload-list {
+  height: 350px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.uploading {
+  padding-top: 27px;
+}
+.progress {
+  /* width: 700px; */
+  display: flex;
+}
+.uploading .parse {
+  display: flex;
+}
+.parse .el-progress {
+  /* font-size: 18px; */
+  width: 70%;
+}
+.progress .el-progress {
+  /* font-size: 18px; */
+  width: 70%;
+}
+.uploading .fileName {
+  font-size: 17px;
+  margin-right: 40px;
+  margin-left: 80px;
+
+  /* width: 80px; */
+}
+.uploading .fileSize {
+  font-size: 17px;
+
+  /* width: 80px; */
+}
+
+.progress .uploadSpeed {
+  font-size: 17px;
+  margin-left: 5px;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+.upload-list::-webkit-scrollbar {
+  width: 4px;
+}
+.upload-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.2);
+}
+.upload-list::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: rgba(0,0,0,0.1);
+}
+</style>

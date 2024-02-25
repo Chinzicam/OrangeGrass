@@ -1,0 +1,107 @@
+{
+  "id": "2929707",
+  "name": "Element_icon",
+  "font_family": "iconfont",
+  "css_prefix_text": "el-icon-ali",
+  "description": "element-ui 扩展icon",
+  "glyphs": [
+    {
+      "icon_id": "10514894",
+      "name": "必填",
+      "font_class": "bitian",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "1009533",
+      "name": "文学哲学历史",
+      "font_class": "wenxue01",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "2087566",
+      "name": "医学",
+      "font_class": "yixue",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "4670120",
+      "name": "工学",
+      "font_class": "gongxue",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "5008686",
+      "name": "法学",
+      "font_class": "faxue",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "5584852",
+      "name": "edu-艺术学",
+      "font_class": "edu-yishuxue",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "6527651",
+      "name": "学科",
+      "font_class": "xueke",
+      "unicode": "e728",
+      "unicode_decimal": 59176
+    },
+    {
+      "icon_id": "6725243",
+      "name": "农学",
+      "font_class": "nongxue",
+      "unicode": "e8b8",
+      "unicode_decimal": 59576
+    },
+    {
+      "icon_id": "8100737",
+      "name": "教育学习",
+      "font_class": "jiaoyuxuexi",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "9582716",
+      "name": "物理学习",
+      "font_class": "wulixuexi",
+      "unicode": "ec9a",
+      "unicode_decimal": 60570
+    },
+    {
+      "icon_id": "12557784",
+      "name": "哲学",
+      "font_class": "zhexue",
+      "unicode": "e7b9",
+      "unicode_decimal": 59321
+    },
+    {
+      "icon_id": "12558557",
+      "name": "历史学",
+      "font_class": "lishixue",
+      "unicode": "e7ba",
+      "unicode_decimal": 59322
+    },
+    {
+      "icon_id": "12723628",
+      "name": "经济学",
+      "font_class": "icon",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "23073419",
+      "name": "icon_学科分类",
+      "font_class": "icon_xuekefenlei",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    }
+  ]
+}

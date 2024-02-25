@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2929707 */
+  src: url('iconfont.woff2?t=1637049182597') format('woff2'),
+       url('iconfont.woff?t=1637049182597') format('woff'),
+       url('iconfont.ttf?t=1637049182597') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.el-icon-alibitian:before {
+  content: "\e635";
+}
+
+.el-icon-aliwenxue01:before {
+  content: "\e61c";
+}
+
+.el-icon-aliyixue:before {
+  content: "\e607";
+}
+
+.el-icon-aligongxue:before {
+  content: "\e601";
+}
+
+.el-icon-alifaxue:before {
+  content: "\e616";
+}
+
+.el-icon-aliedu-yishuxue:before {
+  content: "\e633";
+}
+
+.el-icon-alixueke:before {
+  content: "\e728";
+}
+
+.el-icon-alinongxue:before {
+  content: "\e8b8";
+}
+
+.el-icon-alijiaoyuxuexi:before {
+  content: "\e695";
+}
+
+.el-icon-aliwulixuexi:before {
+  content: "\ec9a";
+}
+
+.el-icon-alizhexue:before {
+  content: "\e7b9";
+}
+
+.el-icon-alilishixue:before {
+  content: "\e7ba";
+}
+
+.el-icon-aliicon:before {
+  content: "\e65d";
+}
+
+.el-icon-aliicon_xuekefenlei:before {
+  content: "\e67e";
+}
+
