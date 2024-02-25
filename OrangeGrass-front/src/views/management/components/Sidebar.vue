@@ -108,16 +108,16 @@ export default {
           index: 'images',
           icon: 'el-icon-lx-home'
         },
-        {
-          title: '申诉管理',
-          index: 'appeal',
-          icon: 'el-icon-lx-home',
-        },
-        {
-          title: '举报管理',
-          index: 'report',
-          icon: 'el-icon-lx-home',
-        },
+        // {
+        //   title: '申诉管理',
+        //   index: 'appeal',
+        //   icon: 'el-icon-lx-home',
+        // },
+        // {
+        //   title: '举报管理',
+        //   index: 'report',
+        //   icon: 'el-icon-lx-home',
+        // },
         {
           title: '广告管理',
           index: 'advertise',

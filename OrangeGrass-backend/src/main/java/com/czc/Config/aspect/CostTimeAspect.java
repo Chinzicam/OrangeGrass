@@ -1,18 +1,24 @@
 package com.czc.Config.aspect;
 
-import com.czc.Util.IPUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.czc.Service.SystemService;
+import com.czc.Util.IPUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 @Aspect
@@ -44,7 +50,7 @@ public class CostTimeAspect {
             String uri = request.getRequestURI();
             //获取类名称
             String className=joinPoint.getSignature().getDeclaringTypeName();
-            systemService.addInterfaceAccessRecord(uri,className,method,cost,date,ip);
+//            systemService.addInterfaceAccessRecord(uri,className,method,cost,date,ip);
             log.info("URI:[{}]，IP:[{}]，类:[{}]，方法:[{}]，接口耗时:[{}]",uri,ip,className,method, cost + "毫秒");
         } catch (Throwable throwable) {
             throwable.printStackTrace();

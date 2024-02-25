@@ -29,7 +29,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(DEFAULT)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sicnu.wzh.Controller"))//按照包名扫描
+                .apis(RequestHandlerSelectors.basePackage("com.czc.Controller"))//按照包名扫描
                 .build();
     }
 }

@@ -39,13 +39,12 @@ public class MyRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("进入鉴权");
         // 获取当前登录用户
         Subject subject = SecurityUtils.getSubject();
         User user = new User();
         System.out.println(subject.getPrincipal().toString());
         user=(User)subject.getPrincipal();
-        System.out.println("鉴权中username："+user.getUsername());
+        System.out.println("判断username："+user.getUsername()+"是否为admin");
         // 获取 SimpleAuthorizationInfo 对象写入授权规则
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 

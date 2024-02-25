@@ -108,18 +108,18 @@ export default new Router({
           component: nsfwFileManagement,
           meta: { title: '图片管理'}
         },
-        {
-          path: '/appeal',
-          component: appealManagement,
-          name: '申诉管理',
-          meta: { title: '申诉管理'}
-        },
-        {
-          path: '/report',
-          component: reportManagement,
-          name: '举报管理',
-          meta: { title: '举报管理'}
-        },
+        // {
+        //   path: '/appeal',
+        //   component: appealManagement,
+        //   name: '申诉管理',
+        //   meta: { title: '申诉管理'}
+        // },
+        // {
+        //   path: '/report',
+        //   component: reportManagement,
+        //   name: '举报管理',
+        //   meta: { title: '举报管理'}
+        // },
         {
           path: '/advertise',
           component: advertisementManagement,

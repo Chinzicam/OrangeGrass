@@ -48,7 +48,7 @@
     </select>
     <insert id="insertConfigItem">
         insert into config_item (config_item_id,config_item_name) values
-        (#{id},#{name})
+            (#{id},#{name})
     </insert>
     <update id="updateConfigItem" parameterType="com.czc.Entity.ConfigItemEntity">
         update config_item set config_item_value = #{value} , config_item_name = #{name}
