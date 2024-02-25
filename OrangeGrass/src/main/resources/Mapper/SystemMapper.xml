@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.SystemMapper">
+    <resultMap id="config" type="com.czc.Entity.ConfigEntity">
+        <id property="id" column="config_id"></id>
+        <id property="name" column="config_name"></id>
+        <id property="createTime" column="create_time"></id>
+        <id property="createUserId" column="create_user_id"></id>
+        <id property="updateTime" column="update_time"></id>
+        <id property="updateUserId" column="update_user_id"></id>
+    </resultMap>
+    <resultMap id="configItem" type="com.czc.Entity.ConfigItemEntity">
+        <id property="id" column="config_item_id"></id>
+        <id property="name" column="config_item_name"></id>
+        <id property="value" column="config_item_value"></id>
+        <id property="extra" column="config_item_extra"></id>
+    </resultMap>
+    <select id="selectInterfaceAccessRecord" resultType="com.czc.Entity.AccessRecord">
+        select * from interface_access_record
+    </select>
+    <insert id="insertInterfaceAccessRecord">
+        insert into interface_access_record (uri,class_name,method_name,cost_time,access_time,from_ip)
+        values (#{uri},#{className},#{methodName},#{costTime},#{accessTime},#{fromIp})
+    </insert>
+    <select id="selectAdvertisementLength" resultType="int">
+        select config_item_extra from config_item where config_item_name = '广告投放' limit 1
+    </select>
+    <select id="selectNSFWScore" resultType="double">
+        select config_item_extra from config_item where config_item_name = '图片上传时鉴黄' limit 1
+    </select>
+    <update id="updateAdvertisementLength" parameterType="int">
+        update config_item set config_item_extra = #{length} where config_item_name = '广告投放'
+    </update>
+    <update id="updateNSFWScore" parameterType="double">
+        update config_item set config_item_extra = #{score} where config_item_name = '图片上传时鉴黄'
+    </update>
+    <select id="selectSpeedLimitRate" resultType="long">
+        select config_item_extra from config_item where config_item_name = '限速' limit 1
+    </select>
+    <update id="updateSpeedLimit" parameterType="long">
+        update config_item set config_item_extra = #{rate} where config_item_name = '限速'
+    </update>
+    <delete id="deleteById">
+        delete from config_item where config_item_id = #{id}
+    </delete>
+    <select id="selectConfigItemByName" resultMap="configItem">
+        select * from config_item where config_item_name = #{name}
+    </select>
+    <insert id="insertConfigItem">
+        insert into config_item (config_item_id,config_item_name) values
+        (#{id},#{name})
+    </insert>
+    <update id="updateConfigItem" parameterType="com.czc.Entity.ConfigItemEntity">
+        update config_item set config_item_value = #{value} , config_item_name = #{name}
+        where config_item_id = #{id}
+    </update>
+    <select id="selectConfigItems" resultMap="configItem">
+        select * from config_item
+    </select>
+    <select id="selectConfigs" resultMap="config">
+        select config_id,config_name,create_time,update_time,create_user_id,update_user_id from config
+    </select>
+    <select id="selectConfigItemById" resultType="com.czc.Entity.DTO.ConfigItemDTO">
+        select config_id, system_config.config_item_id,config_item_name,system_config.value from (system_config left join config_item on system_config.config_item_id = config_item.config_item_id)
+        where system_config.config_id = #{id}
+    </select>
+    <insert id="insertIntoConfigItem">
+        insert into config_item (config_item_id,config_item_name,config_item_value)
+        values (#{id},#{name},#{value})
+    </insert>
+    <insert id="insertIntoSystemConfig">
+        insert into system_config (config_id,config_item_id,value)
+        values (#{configId},#{itemId},#{itemValue})
+    </insert>
+    <insert id="insertConfig" parameterType="com.czc.Entity.ConfigEntity">
+        insert into config (config_id,config_name,create_time,create_user_id,update_time,update_user_id)
+        values (#{id},#{name},#{createTime},#{createUserId},#{updateTime},#{updateUserId})
+    </insert>
+</mapper>

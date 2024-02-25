@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.FolderMapper">
+
+    <select id="getByUserId" parameterType="String" resultType="com.czc.Entity.FolderEntity">
+        select * from folder where folder_id in
+                                   (select folder_id from user_folder where user_id = #{userId} and is_delete = 0) and is_delete = 0
+    </select>
+    <insert id="insertFolderX" parameterType="com.czc.Entity.DTO.Folder2XDTO">
+        insert into folder_x (id,folder_id,x_id,x_type) values(#{id},#{folderId},#{xId},#{xType})
+    </insert>
+</mapper>

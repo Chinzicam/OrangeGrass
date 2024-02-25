@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.AppealMapper">
+
+    <resultMap id="AppealRecordVO" type="com.czc.Entity.VO.AppealRecordVO">
+        <id property="appealId" column="appeal_id"></id>
+        <id property="fileId" column="file_id"></id>
+        <id property="fileName" column="file_name"></id>
+        <id property="userId" column="user_id"></id>
+        <id property="userName" column="username"></id>
+        <id property="operatorId" column="operator_id"></id>
+        <id property="operatorName" column="operator_name"></id>
+        <id property="appealTime" column="appeal_time"></id>
+        <id property="operateTime" column="operate_time"></id>
+        <id property="remarks" column="remarks"></id>
+        <id property="result" column="result"></id>
+    </resultMap>
+
+    <select id="selectCheckedAppealVO" resultMap="AppealRecordVO">
+        select b.appeal_id,b.file_id,file.file_name,b.user_id,b.username,b.operator_id,b.operator_name,b.appeal_time,b.operate_time,b.result,b.remarks from
+        (select appeal_id,file_id,a.user_id,a.username,operator_id,user.username operator_name,appeal_time,operate_time,result,remarks from
+        (select appeal_id,file_id,user.user_id,username,operator_id,appeal_time,operate_time,result,remarks
+        from appeal_record left join user on appeal_record.user_id = user.user_id where 1 = 1
+
+            and ( result = 1 or  result = 2)
+
+        <if test="userId != null and userId != ''">
+            and user_id = #{userId}
+        </if>
+        <if test="operatorId != null and operatorId != ''">
+            and operator_id = #{operatorId}
+        </if>
+        ) a
+        left join user on a.operator_id = user.user_id) b left join file on file.file_id = b.file_id
+    </select>
+
+    <select id="selectAppealVO" resultMap="AppealRecordVO">
+        select b.appeal_id,b.file_id,file.file_name,b.user_id,b.username,b.operator_id,b.operator_name,b.appeal_time,b.operate_time,b.result,b.remarks from
+        (select appeal_id,file_id,a.user_id,a.username,operator_id,user.username operator_name,appeal_time,operate_time,result,remarks from
+        (select appeal_id,file_id,user.user_id,username,operator_id,appeal_time,operate_time,result,remarks
+        from appeal_record left join user on appeal_record.user_id = user.user_id where 1 = 1
+        <if test="result != null">
+        and result = #{result}
+        </if>
+        <if test="userId != null and userId != ''">
+        and user_id = #{userId}
+        </if>
+        <if test="operatorId != null and operatorId != ''">
+        and operator_id = #{operatorId}
+        </if>
+        ) a
+        left join user on a.operator_id = user.user_id) b left join file on file.file_id = b.file_id
+    </select>
+
+</mapper>

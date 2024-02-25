@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.PermissionMapper">
+
+    <resultMap id="userPermission" type="com.czc.Entity.DTO.UserPermissionDTO">
+        <id property="id" column="id"></id>
+        <id property="userId" column="user_id"></id>
+        <id property="permissionId" column="permission_id"></id>
+    </resultMap>
+
+    <delete id="deleteUserPermission" parameterType="String">
+        delete from user_permission where user_id = #{userId}
+    </delete>
+
+    <insert id="saveUserPermission" parameterType="java.util.Map">
+        insert into user_permission (permission_id,user_id)
+        values <foreach collection="map" item="value" index="key" separator=",">
+        (#{key},#{value})
+    </foreach>
+    </insert>
+
+    <select id="selectUserPermission" parameterType="String" resultMap="userPermission">
+        select id , user_id , permission_id from user_permission where user_id = #{userId}
+    </select>
+
+</mapper>

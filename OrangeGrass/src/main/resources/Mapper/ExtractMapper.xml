@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czc.Mapper.ExtractMapper">
+
+
+    <select id="selectExtractRecordVO" resultType="com.czc.Entity.VO.ExtractRecordVO">
+        select c.extract_record_id,extract_time,c.share_id,c.user_id,c.username,c.file_id,c.file_name,c.extract_code,c.from_user_id,user.username from_user_name,c.expire_time from
+            (select b.extract_record_id,extract_time,b.share_id,b.user_id,username,b.file_id,b.file_name,b.extract_code,b.from_user_id,b.expire_time from
+                (select a.extract_record_id,extract_time,a.share_id,a.user_id,x_id file_id,x_name file_name,extract_code,from_user_id,expire_time from
+                    (SELECT extract_record_id,share_id,user_id,extract_time FROM `extract_record` ) a left join share_record on a.share_id = share_record.share_id where user_id = #{user_id}) b left join user on b.user_id = user.user_id) c left join user on c.from_user_id = user.user_id
+    </select>
+
+
+</mapper>
