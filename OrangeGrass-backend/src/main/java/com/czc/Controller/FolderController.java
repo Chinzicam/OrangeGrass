@@ -33,7 +33,7 @@ public class FolderController {
     @CostTime
     @PutMapping("/rename")
     public HttpResonse renameFolder(@Param("folderId") String folderId,
-                                    @Param("newName") String newName){
+                                  @Param("newName") String newName){
         if (folderService.renameFolder(folderId,newName)) {
             return HttpResonse.success().setMsg("重命名成功");
         }

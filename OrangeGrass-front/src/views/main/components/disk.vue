@@ -22,14 +22,14 @@
           </div>
         </div>
         <div class="disk-header-content-item" v-if="isAdmin">
-          <div class="disk-header-to-management-btn" style="font-size: 5px;cursor: pointer">
-            <p @click="()=>{this.$router.push('/userfile')}">管理页面</p>
+          <div class="disk-header-to-management-btn" style="font-size: 10px;cursor: pointer">
+            <el-button round size="small" @click="()=>{this.$router.push('/userfile')}">管理页面</el-button>
           </div>
         </div>
         <div class="disk-header-content-item">
           <div class="disk-header-transmission-btn">
             <div class="disk-header-transmission-list-title">
-              <p @click="showTransmissionList=!showTransmissionList" style="cursor: pointer;font-size: 5px" >传输列表</p>
+              <el-button round size="small" @click="showTransmissionList=!showTransmissionList">传输列表</el-button>
             </div>
             <div class="disk-main-transmission-list" v-show="showTransmissionList">
               <transmission-list :upload-file-list="uploadFileList"
@@ -80,7 +80,9 @@
                     font-size: 12px;">续费会员</span>
           </div>
         </div>
-        <div style="width: 100px"></div>
+        <div style="width: 80px;padding-left: 20px">
+          <el-button round size="small" @click="goToAuthorPage">支持作者</el-button>
+        </div>
       </div>
     </div>
     <div class="disk-body">
@@ -166,9 +168,15 @@ import Friend from "./friend";
 import Avatar from "./avatar";
 import Fileservice from "../../../utils/FileRequest";
 import {getAvatarPathGlobal} from "../../../main";
+import * as https from "https";
 
 export default {
   name: "disk",
+  computed: {
+    https() {
+      return https
+    }
+  },
   props: {
     fileListLoading: Boolean,
     fileList: Array,
@@ -386,6 +394,9 @@ export default {
     },
     selectedFriendIdChange(val) {
       this.selectedFriendId = val
+    },
+    goToAuthorPage() {
+      window.location.href = 'http://www.chinzicam.top/';
     }
   }
 }
@@ -425,6 +436,7 @@ export default {
 }
 .disk-header-content-item {
   margin-left: 20px;
+  width: 100px;
 }
 .disk-body {
   /*height: 100%;*/

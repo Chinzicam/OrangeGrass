@@ -1,6 +1,7 @@
 package com.czc.Service.Impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.czc.Constant.HttpResonse;
 import com.czc.Entity.DTO.Folder2XDTO;
 import com.czc.Entity.DTO.User2FileDTO;
 import com.czc.Entity.FileEntity;
@@ -8,7 +9,6 @@ import com.czc.Entity.ShareRecord;
 import com.czc.Entity.VO.ShareRecordVO;
 import com.czc.Mapper.ShareMapper;
 import com.czc.Service.*;
-import com.czc.Constant.HttpResonse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import static com.czc.Constant.ShareConstant.*;
  * @author Hanaue
  */
 @Service
-public class ShareServiceImpl extends ServiceImpl<ShareMapper, ShareRecord> implements ShareService {
+public class ShareServiceImpl extends ServiceImpl<ShareMapper,ShareRecord> implements ShareService {
 
     @Autowired
     private VoService voService;

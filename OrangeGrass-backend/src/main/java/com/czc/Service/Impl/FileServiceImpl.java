@@ -2,18 +2,17 @@ package com.czc.Service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.czc.Constant.FileConstant;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.czc.Entity.DTO.FileDto;
-import com.czc.Entity.DTO.Folder2XDTO;
-import com.czc.Entity.DTO.User2FileDTO;
 import com.czc.Entity.FileEntity;
 import com.czc.Entity.ThumbnailEntity;
+import com.czc.Entity.DTO.Folder2XDTO;
+import com.czc.Entity.DTO.User2FileDTO;
 import com.czc.Mapper.FileMapper;
 import com.czc.Service.*;
 import com.czc.Util.FileUtil;
 import com.czc.Util.MD5Util;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static com.czc.Constant.FileConstant.UPLOAD_PATH;
 import static com.czc.Constant.MinetypeConstant.*;
 import static com.czc.Constant.NSFW.*;
 
@@ -180,7 +180,7 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileEntity> impleme
      */
     @Override
     public boolean saveRecord(FileDto file, String md5, Long fileSize, String fileName, String type) {
-        String path = FileConstant.UPLOAD_PATH + type;
+        String path = UPLOAD_PATH + type;
         FileEntity fileEntity = new FileEntity();
         fileEntity.setMd5(md5);
         Date date = new Date();
@@ -273,7 +273,7 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileEntity> impleme
     public boolean saveFile(FileDto file) throws Exception{
         String fileName = file.getFile().getOriginalFilename();
         String type = file.getFile().getContentType();
-        String path = FileConstant.UPLOAD_PATH + type;
+        String path = UPLOAD_PATH + type;
         String md5 = MD5Util.calcMD5(file.getFile().getInputStream());
         FileEntity fileEntity = new FileEntity();
         fileEntity.setMd5(md5);

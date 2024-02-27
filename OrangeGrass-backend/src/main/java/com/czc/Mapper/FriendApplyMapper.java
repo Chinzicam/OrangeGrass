@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface FriendApplyMapper extends BaseMapper<FriendApplyRecord> {
 
-    public List<FriendApplyVO> selectFriendApplyRecordVO(String fromUserId, String targetUserId);
+    public List<FriendApplyVO> selectFriendApplyRecordVO(String fromUserId,String targetUserId);
 
 }

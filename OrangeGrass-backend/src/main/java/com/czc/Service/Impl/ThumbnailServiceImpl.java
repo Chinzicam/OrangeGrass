@@ -2,10 +2,9 @@ package com.czc.Service.Impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.czc.Constant.FileConstant;
-import com.czc.Entity.DTO.User2FileDTO;
 import com.czc.Entity.FileEntity;
 import com.czc.Entity.ThumbnailEntity;
+import com.czc.Entity.DTO.User2FileDTO;
 import com.czc.Mapper.ThumbnailMapper;
 import com.czc.Service.FileService;
 import com.czc.Service.ThumbnailService;
@@ -24,6 +23,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.UUID;
 
+import static com.czc.Constant.FileConstant.UPLOAD_PATH;
 import static com.czc.Constant.MinetypeConstant.MINETYPE_IMAGE;
 import static com.czc.Constant.MinetypeConstant.MINETYPE_VIDEO;
 import static com.czc.Constant.NSFW.NSFW_BAN;
@@ -265,7 +265,7 @@ public class ThumbnailServiceImpl extends ServiceImpl<ThumbnailMapper, Thumbnail
     }
 
     private String getThumbnailPath(ThumbnailEntity thumbnail){
-        return FileConstant.UPLOAD_PATH + "thumbnail/"+thumbnail.getId()+".png";
+        return UPLOAD_PATH + "thumbnail/"+thumbnail.getId()+".png";
 //        return "/home/spring/netdisk/upload/thumbnail/"+thumbnail.getId()+".png";
 //        return "backend/upload/thumbnail/"+thumbnail.getId()+".png";
 //        return "upload/thumbnail/"+thumbnail.getId()+".png";

@@ -4,9 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.czc.Entity.User;
+import com.czc.Service.UserService;
 import com.czc.Util.JWT.JwtToken;
 import com.czc.Util.JWT.JwtUtil;
-import com.czc.Service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -44,7 +44,7 @@ public class MyRealm extends AuthorizingRealm {
         User user = new User();
         System.out.println(subject.getPrincipal().toString());
         user=(User)subject.getPrincipal();
-        System.out.println("判断username："+user.getUsername()+"是否为admin");
+        System.out.println("鉴定username："+user.getUsername()+"权限");
         // 获取 SimpleAuthorizationInfo 对象写入授权规则
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 

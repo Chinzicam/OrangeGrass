@@ -4,7 +4,6 @@ package com.czc.Controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.czc.Config.annotation.CostTime;
-import com.czc.Constant.ApplyConstant;
 import com.czc.Constant.HttpResonse;
 import com.czc.Entity.FriendApplyRecord;
 import com.czc.Entity.UserFriendRecord;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.UUID;
+
+import static com.czc.Constant.ApplyConstant.APPLY_PASS;
 
 @RestController
 @RequestMapping("/api/apply")
@@ -51,7 +52,7 @@ public class ApplyController {
             /**
              * 添加好友
              */
-            if (result == ApplyConstant.APPLY_PASS) {
+            if (result == APPLY_PASS) {
                 Date date = new Date();
                 FriendApplyRecord friendApplyRecord = friendApplyService.getById(id);
                 UserFriendRecord record1 = new UserFriendRecord();

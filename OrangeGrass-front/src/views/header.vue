@@ -19,7 +19,7 @@
       </div>
       <div class="disk-header-content-item">
         <div class="disk-header-to-management-btn" style="font-size: 5px;cursor: pointer">
-          <p @click="()=>{this.$router.push('/admin')}">管理页面</p>
+          <el-button round size="small" @click="()=>{this.$router.push('/admin')}">管理页面</el-button>
         </div>
       </div>
     </div>

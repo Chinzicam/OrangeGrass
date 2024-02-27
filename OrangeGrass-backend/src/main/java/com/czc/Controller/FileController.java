@@ -2,9 +2,7 @@ package com.czc.Controller;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.czc.Config.annotation.CostTime;
-import com.czc.Constant.FileConstant;
 import com.czc.Constant.HttpResonse;
-import com.czc.Constant.NSFW;
 import com.czc.Entity.DTO.FileDto;
 import com.czc.Entity.FileEntity;
 import com.czc.Entity.User;
@@ -23,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.*;
+
+import static com.czc.Constant.FileConstant.UPLOAD_PATH;
+import static com.czc.Constant.NSFW.NSFW_BAN;
 
 
 /**
@@ -117,7 +118,7 @@ public class FileController {
             return HttpResonse.fail().setMsg("对不起，管理员关闭了文件上传功能");
         }
         System.out.println("上传【" + fileName + "】的第【" + index + "】/【" + chunkTotal + "】个分片");
-        chunkService.saveChunk(chunk,md5,index,chunkSize,fileName, FileConstant.UPLOAD_PATH + fileType);
+        chunkService.saveChunk(chunk,md5,index,chunkSize,fileName,UPLOAD_PATH + fileType);
         if(Objects.equals(index, chunkTotal)){
             fileService.saveRecord(new FileDto(userId,folderId,chunk,new Date()),md5,fileSize,fileName,fileType);
             chunkService.deleteChunkByMd5(md5);
@@ -227,7 +228,7 @@ public class FileController {
                          HttpServletResponse response) {
 
         FileEntity file = fileService.getFileByU2Fid(u2fId);
-        if (file.getIsBan() == NSFW.NSFW_BAN) {
+        if (file.getIsBan() == NSFW_BAN) {
             return;
         }
         File resultFile = new File(file.getFileLocation());

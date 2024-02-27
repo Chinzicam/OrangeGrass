@@ -1,9 +1,9 @@
 package com.czc.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.czc.Entity.User;
 import com.czc.Entity.DTO.User2FileDTO;
 import com.czc.Entity.DTO.User2FolderDTO;
-import com.czc.Entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

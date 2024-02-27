@@ -3,7 +3,6 @@ package com.czc.Controller;
 
 import com.czc.Config.annotation.CostTime;
 import com.czc.Constant.HttpResonse;
-import com.czc.Constant.MinetypeConstant;
 import com.czc.Entity.VO.EntityTreeVO;
 import com.czc.Service.DiskService;
 import org.apache.ibatis.annotations.Param;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+
+import static com.czc.Constant.MinetypeConstant.*;
 
 /**
  * @author hanaue
@@ -53,7 +54,7 @@ public class DiskController {
     public HttpResonse getImageFolderAndFile(@PathVariable("userId") String userId,
                                              @Param("folderId") String folderId){
         EntityTreeVO result = diskService.createFolderAndFileTreeByType(userId,folderId,
-                                                                        MinetypeConstant.MINETYPE_IMAGE);
+                                                                        MINETYPE_IMAGE);
         return HttpResonse.success().setData(result).setMsg("查询图片成功");
     }
 
@@ -62,7 +63,7 @@ public class DiskController {
     public HttpResonse getDocumentFolderAndFile(@PathVariable("userId") String userId,
                                                 @Param("folderId") String folderId){
         EntityTreeVO result = diskService.createFolderAndFileTreeByType(userId,folderId,
-                                                                        MinetypeConstant.MINETYPE_DOCUMENT);
+                                                                        MINETYPE_DOCUMENT);
         return HttpResonse.success().setData(result).setMsg("查询文档成功");
     }
 
@@ -71,7 +72,7 @@ public class DiskController {
     public HttpResonse getVideoFolderAndFile(@PathVariable("userId") String userId,
                                              @Param("folderId") String folderId){
         EntityTreeVO result = diskService.createFolderAndFileTreeByType(userId,folderId,
-                                                                        MinetypeConstant.MINETYPE_VIDEO);
+                                                                        MINETYPE_VIDEO);
         return HttpResonse.success().setData(result).setMsg("查询视频成功");
     }
 
@@ -80,7 +81,7 @@ public class DiskController {
     public HttpResonse getMusicFolderAndFile(@PathVariable("userId") String userId,
                                              @Param("folderId") String folderId){
         EntityTreeVO result = diskService.createFolderAndFileTreeByType(userId,folderId,
-                                                                        MinetypeConstant.MINETYPE_MUSIC);
+                                                                        MINETYPE_MUSIC);
         return HttpResonse.success().setData(result).setMsg("查询音乐成功");
     }
 
@@ -89,7 +90,7 @@ public class DiskController {
     public HttpResonse getExecutFolderAndFile(@PathVariable("userId") String userId,
                                               @Param("folderId") String folderId){
         EntityTreeVO result = diskService.createFolderAndFileTreeByType(userId,folderId,
-                                                                          MinetypeConstant.MINETYPE_EXE);
+                                                                          MINETYPE_EXE);
         return HttpResonse.success().setData(result).setMsg("查询应用成功");
     }
 }

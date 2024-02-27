@@ -1,8 +1,8 @@
 package com.czc.Controller;
 
 import com.czc.Config.annotation.CostTime;
-import com.czc.Service.AvatarService;
 import com.czc.Constant.HttpResonse;
+import com.czc.Service.AvatarService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

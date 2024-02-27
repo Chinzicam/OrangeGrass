@@ -1,9 +1,9 @@
 package com.czc.Service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.czc.Entity.DTO.Folder2XDTO;
-import com.czc.Entity.FolderEntity;
 import com.czc.Constant.HttpResonse;
+import com.czc.Entity.FolderEntity;
+import com.czc.Entity.DTO.Folder2XDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.czc.Service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.github.pagehelper.PageInfo;
 import com.czc.Entity.DTO.FileDto;
 import com.czc.Entity.FileEntity;
 import com.czc.Entity.ThumbnailEntity;
-import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ public interface FileService extends IService<FileEntity> {
 
     public FileEntity getByMD5(String md5);
 
-    public boolean saveRecord(FileDto file, String md5, Long fileSize, String fileName, String filetype);
+    public boolean saveRecord(FileDto file,String md5,Long fileSize,String fileName,String filetype);
 
     public FileEntity getFileByU2Fid(String id);
 

@@ -1,7 +1,6 @@
 package com.czc.Service.Impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.czc.Constant.FileConstant;
 import com.czc.Entity.AvatarEntity;
 import com.czc.Entity.FileEntity;
 import com.czc.Mapper.AvatarMapper;
@@ -15,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.UUID;
 
+import static com.czc.Constant.FileConstant.UPLOAD_PATH;
 import static com.czc.Constant.MinetypeConstant.MINETYPE_IMAGE;
 
 @Service
-public class AvatarServiceImpl extends ServiceImpl<AvatarMapper, AvatarEntity> implements AvatarService {
+public class AvatarServiceImpl extends ServiceImpl<AvatarMapper,AvatarEntity> implements AvatarService {
 
     @Autowired
     private AvatarMapper avatarMapper;
@@ -46,11 +46,11 @@ public class AvatarServiceImpl extends ServiceImpl<AvatarMapper, AvatarEntity> i
             return false;
         }
         String avatarId = UUID.randomUUID().toString().replaceAll("-","");
-        FileUtil.saveMultipartFile(file, FileConstant.UPLOAD_PATH + "avatar/" , avatarId);
+        FileUtil.saveMultipartFile(file,UPLOAD_PATH + "avatar/" , avatarId);
         AvatarEntity avatar = new AvatarEntity();
         avatar.setAvatarId(avatarId);
         avatar.setUserId(userId);
-        avatar.setAvatarLocation(FileConstant.UPLOAD_PATH + "avatar/" + avatarId + fileFormat);
+        avatar.setAvatarLocation(UPLOAD_PATH + "avatar/" + avatarId + fileFormat);
         avatar.setCreateTime(new Date());
         save(avatar);
         return true;

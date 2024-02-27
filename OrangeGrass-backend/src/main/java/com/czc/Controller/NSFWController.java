@@ -2,7 +2,6 @@ package com.czc.Controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.czc.Constant.HttpResonse;
-import com.czc.Constant.NSFW;
 import com.czc.Entity.FileEntity;
 import com.czc.Entity.VO.NSFWVO;
 import com.czc.Service.FileService;
@@ -13,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.czc.Constant.NSFW.NSFW_BAN;
 
 @RestController
 @RequestMapping("/api/nsfw")
@@ -57,7 +58,7 @@ public class NSFWController {
             if (systemService.isImgCheckEnabled() && score > (systemService.getNSFWScore() / 100.0)) {
                 if (fileService.update(new UpdateWrapper<FileEntity>()
                         .eq("file_id",fileService.getFileByU2Fid(id).getId())
-                        .set("is_ban", NSFW.NSFW_BAN))) {
+                        .set("is_ban",NSFW_BAN))) {
                     return HttpResonse.success().setMsg("文件违规");
                 }
             }

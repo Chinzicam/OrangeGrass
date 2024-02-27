@@ -1,8 +1,8 @@
 package com.czc.Service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.czc.Entity.DTO.User2FileDTO;
 import com.czc.Entity.User;
+import com.czc.Entity.DTO.User2FileDTO;
 
 public interface UserService extends IService<User> {
 

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface FriendApplyService extends IService<FriendApplyRecord> {
 
-    public List<FriendApplyVO> getFriendApplyVO(String fromUserId, String targetUserId);
+    public List<FriendApplyVO> getFriendApplyVO(String fromUserId,String targetUserId);
 }
