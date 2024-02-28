@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Hanaue
+ * @author czc
  */
 @Data
 @TableName("share_record")

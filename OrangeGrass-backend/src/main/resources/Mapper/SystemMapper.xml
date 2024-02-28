@@ -26,13 +26,13 @@
         select config_item_extra from config_item where config_item_name = '广告投放' limit 1
     </select>
     <select id="selectNSFWScore" resultType="double">
-        select config_item_extra from config_item where config_item_name = '图片上传时鉴黄' limit 1
+        select config_item_extra from config_item where config_item_name = '图片上传时检测' limit 1
     </select>
     <update id="updateAdvertisementLength" parameterType="int">
         update config_item set config_item_extra = #{length} where config_item_name = '广告投放'
     </update>
     <update id="updateNSFWScore" parameterType="double">
-        update config_item set config_item_extra = #{score} where config_item_name = '图片上传时鉴黄'
+        update config_item set config_item_extra = #{score} where config_item_name = '图片上传时检测'
     </update>
     <select id="selectSpeedLimitRate" resultType="long">
         select config_item_extra from config_item where config_item_name = '限速' limit 1

@@ -83,7 +83,6 @@ public class WebSocketServer {
     public void onMessage(String message, Session session) {
         log.info("用户消息:"+userId+",报文:"+message);
         //可以群发消息
-        //消息保存到数据库、redis
         if(StringUtils.isNotBlank(message)){
             try {
                 //解析发送的报文
@@ -99,7 +98,6 @@ public class WebSocketServer {
 //                    DeviceLocalThread.paramData.put(jsonObject.getString("group"),jsonObject.toJSONString());
                 }else{
                     log.error("请求的userId:"+fromUserId+"不在该服务器上");
-                    //否则不在这个服务器上，发送到mysql或者redis
                 }
             }catch (Exception e){
                 e.printStackTrace();

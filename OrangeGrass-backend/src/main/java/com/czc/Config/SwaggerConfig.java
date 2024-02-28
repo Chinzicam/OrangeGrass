@@ -25,7 +25,7 @@ public class SwaggerConfig {
     @Bean
     public Docket docket(){
 
-        DEFAULT = new ApiInfo("网盘接口","","","","","","");
+        DEFAULT = new ApiInfo("橙草云接口","","","","","","");
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(DEFAULT)
                 .select()

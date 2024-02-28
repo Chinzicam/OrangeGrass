@@ -218,29 +218,7 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileEntity> impleme
         ufvo.setFileName(fileName);
         userService.addFile(ufvo);
 
-        /**
-         * 如果已开启图片上传鉴黄
-         */
-        //原版
-//        if (systemService.isImgCheckEnabled()) {
-//            double banScore = systemService.getNSFWScore() / 100.0;
-//            try {
-//                double score = nsfwService.checkImage(ufvo.getId());
-//                if (score > banScore) {
-//                    update(new UpdateWrapper<FileEntity>()
-//                            .set("nsfw_score",score)
-//                            .set("is_ban",NSFW_BAN)
-//                            .eq("file_id",fileEntity.getId()));
-//                } else {
-//                    update(new UpdateWrapper<FileEntity>()
-//                            .set("nsfw_score",score)
-//                            .eq("file_id",fileEntity.getId()));
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-        //新版
+
         if (systemService.isImgCheckEnabled()) {
             if (MINETYPE_IMAGE.contains(fileName.substring(fileName.lastIndexOf('.')+1).toLowerCase())) {
                 try {

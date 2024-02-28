@@ -45,7 +45,7 @@ public class User {
     private int isBan;
 
     @TableField(value = "storage")
-    @ApiModelProperty("用户当前网盘容量")
+    @ApiModelProperty("用户当前云盘容量")
     private Long storage;
 
     @TableField(value = "user_type")

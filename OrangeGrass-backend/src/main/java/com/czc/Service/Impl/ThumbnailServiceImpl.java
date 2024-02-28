@@ -30,7 +30,7 @@ import static com.czc.Constant.NSFW.NSFW_BAN;
 import static com.czc.Constant.NSFW.NSFW_IMG_PATH;
 
 /**
- * @author Hanaue
+ * @author czc
  */
 @Service
 public class ThumbnailServiceImpl extends ServiceImpl<ThumbnailMapper, ThumbnailEntity> implements ThumbnailService {

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * @author Hanaue
+ * @author czc
  */
 @RestController
 @RequestMapping("/api/thumbnail")

@@ -83,21 +83,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         }
     }
 
-    /**
-     * isAccessAllowed()方法返回false，即认证不通过时进入onAccessDenied方法
-     */
-//    @Override
-//    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-//        return super.onAccessDenied(request, response);
-//    }
-
-    /**
-     * token认证executeLogin成功后，进入此方法，可以进行token更新过期时间
-     */
-//    @Override
-//    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception {
-
-//    }
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
 

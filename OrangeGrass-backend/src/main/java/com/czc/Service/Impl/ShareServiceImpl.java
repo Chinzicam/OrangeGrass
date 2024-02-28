@@ -18,7 +18,7 @@ import static com.czc.Constant.NSFW.NSFW_BAN;
 import static com.czc.Constant.ShareConstant.*;
 
 /**
- * @author Hanaue
+ * @author czc
  */
 @Service
 public class ShareServiceImpl extends ServiceImpl<ShareMapper,ShareRecord> implements ShareService {

@@ -19,13 +19,19 @@ public class RecycleServiceImpl implements RecycleService {
     private VoService voService;
 
     @Override
+    // 根据文件id恢复文件
     public boolean recycleFile(String fileId) {
+        // 通过文件id查询用户文件关系
         User2FileDTO u2f = recycleMapper.selectU2F(fileId);
+        // 通过文件id查询文件
         FileEntity file = recycleMapper.selectFileByU2FId(fileId);
+        // 如果文件被禁用，则不允许恢复
         if (file.getIsBan() == NSFW_BAN) {
             return false;
         }
+        // 设置文件状态为未删除
         u2f.setIsDelete(0);
+        // 恢复文件
         return recycleMapper.recycleFile(fileId) > 0 ? true : false;
     }
 

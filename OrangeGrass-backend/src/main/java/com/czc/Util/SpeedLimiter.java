@@ -22,15 +22,7 @@ public class SpeedLimiter {
     private long totalBytes = 0;
     private long tmpCountBytes = 0;
     private long lastTime = System.currentTimeMillis();
-    /**
-     * @author Ethan
-     * @date 2022-11-18
-     * @param len       send bytes
-     * @description 计算线程延时
-     * sendTime(Ms) = nowTime - lastTime;
-     * workTime(Ms) = (totalBytes*1000)/(maxRate*1024)
-     * delayTime(Ms) = workTime-sendTime
-     **/
+
     public synchronized void delayNextBytes(int len) {
         if (maxRate <= 0) return;
         totalBytes += len;

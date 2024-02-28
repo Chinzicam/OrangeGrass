@@ -46,7 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public boolean createMainFolder(User user){
         FolderEntity folder = new FolderEntity();
         folder.setFolderId(UUID.randomUUID().toString().trim().replaceAll("-",""));
-        folder.setFolderName("Main");
+        folder.setFolderName("Default");
         Date date = new Date();
         folder.setCreateTime(date);
         folder.setUpdateTime(date);

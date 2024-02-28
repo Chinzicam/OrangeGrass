@@ -28,11 +28,15 @@ public class DiskServiceImpl implements DiskService {
 
     @Override
     public List<EntityTreeVO> getFolderAndFileByFolderId(String folderId) {
+        // 通过folderId获取实体列表
         List<EntityListDTO> tmp = voService.getEntityList(folderId);
+        // 创建结果列表
         List<EntityTreeVO> result = new ArrayList<>();
+        // 如果tmp为空或者size为0，则返回空列表
         if (tmp == null || tmp.size() == 0) {
             return new ArrayList<>();
         }
+        // 遍历tmp，将每一项转换为EntityTreeVO
         for (EntityListDTO e : tmp) {
             EntityTreeVO vo = new EntityTreeVO();
             vo.setId(e.getF2xId());
@@ -100,12 +104,15 @@ public class DiskServiceImpl implements DiskService {
 
     @Override
     public EntityTreeVO createFolderTree (String userId){
+        // 通过userId获取文件夹列表
         List<FolderEntity> myFolders = folderService.selectFoldersByUserId(userId);
+        // 通过userId获取文件夹2xvo
         List<Folder2XDTO> vo = voService.selectFolder2XDTObyUserId(userId);
         /**
          * 获取头节点
          */
         EntityTreeVO root = new EntityTreeVO();
+        // 获取主文件夹
         for (FolderEntity folder : myFolders){
             if (folder.getIsMain() == 1){
                 root.setId(folder.getFolderId());

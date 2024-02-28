@@ -53,13 +53,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/api/file/chunkdownload/new", "jwt");
         filterChainDefinitionMap.put("/**", "jwt");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-        //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        //shiroFilterFactoryBean.setLoginUrl("/api/v1/user/login");
-
-        // 登录成功后要跳转的链接
-        ///////gaidong
-        //shiroFilterFactoryBean.setSuccessUrl("/api/v1/user/index");
-        ///////
 
         return shiroFilterFactoryBean;
     }
@@ -91,12 +84,6 @@ public class ShiroConfig {
     @Bean
     public MyRealm getRealm() {
         MyRealm realm = new MyRealm();
-        //修改凭证校验匹配器（处理加密），只有使用了UsernamePasswordToken并且有对password进行加密的才需要
-//        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-//        hashedCredentialsMatcher.setHashAlgorithmName("MD5");
-//        hashedCredentialsMatcher.setHashIterations(1024);
-//
-//        realm.setCredentialsMatcher(hashedCredentialsMatcher);
         return realm;
     }
 

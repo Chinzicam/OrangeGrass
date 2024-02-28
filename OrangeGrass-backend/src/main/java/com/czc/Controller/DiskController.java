@@ -18,7 +18,7 @@ import java.util.List;
 import static com.czc.Constant.MinetypeConstant.*;
 
 /**
- * @author hanaue
+ * @author czc
  */
 @RestController
 @RequestMapping("/api/disk")

@@ -11,6 +11,6 @@ public class NSFW {
     public static final int NSFW_NOT_BAN = 0;
     public static final double NSFW_BAN_SCORE = 0.6;
     public static final String NSFW_IMG_PATH = UPLOAD_PATH +  "ban/ban.jpeg";
-    public static final String NSFW_IMG_CHECK_ENABLE = "图片上传时鉴黄";
-    public static final String NSFW_VIDEO_CHECK_ENABLE = "视频上传时鉴黄";
+    public static final String NSFW_IMG_CHECK_ENABLE = "图片上传时检测";
+    public static final String NSFW_VIDEO_CHECK_ENABLE = "视频上传时检测";
 }

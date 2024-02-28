@@ -27,7 +27,7 @@ import static com.czc.Constant.NSFW.NSFW_BAN;
 
 
 /**
- * @author Hanaue
+ * @author czc
  */
 @RestController
 @RequestMapping("/api/file")

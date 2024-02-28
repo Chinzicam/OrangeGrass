@@ -33,9 +33,9 @@ public class NSFWController {
             nsfwService.checkImages(files);
         } catch (Exception e){
             e.printStackTrace();
-            return HttpResonse.fail().setMsg("图片批量鉴黄失败");
+            return HttpResonse.fail().setMsg("图片批量检测失败");
         }
-        return HttpResonse.success().setMsg("图片批量鉴黄成功");
+        return HttpResonse.success().setMsg("图片批量检测成功");
     }
 
     @PutMapping("/check")
