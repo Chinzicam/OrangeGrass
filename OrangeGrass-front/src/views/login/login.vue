@@ -4,13 +4,17 @@
       <div class="login-wrapper">
         <div class="mask"></div>
         <div class="login-content">
-          <h1>橙 草 云</h1>
+          <h1>
+            <span style="color: #FF6666;">橙</span>
+            <span style="color: #003399;">草</span>
+            <span style="color: #006699;">云</span>
+          </h1>
           <div class="title-text">
               您可以通过这个界面登录到系统。
           </div>
           <div class="other-login">
 <!--            <img src="./asset/QQ.png" alt="">-->
-            <span>欢迎使用本系统</span>
+            <span>欢迎使用本云盘</span>
           </div>
           <div class="login-form">
             <input type="text" class="user" placeholder="账号" v-model="user.username">

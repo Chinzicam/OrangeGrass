@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     init() {
-      document.title = '网盘'
+      document.title = '橙草云'
     },
     initWebSocket() {
       // WebSocket与普通的请求所用协议有所不同，ws等同于http，wss等同于https

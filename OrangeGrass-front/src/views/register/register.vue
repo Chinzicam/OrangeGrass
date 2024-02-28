@@ -10,7 +10,7 @@
           </div>
           <div class="other-login">
 <!--            <img src="./asset/QQ.png" alt="">-->
-            <span>欢迎使用本系统</span>
+            <span>欢迎使用本云盘</span>
           </div>
           <div class="login-form">
             <input type="text" class="user" placeholder="账号" v-model="user.username">

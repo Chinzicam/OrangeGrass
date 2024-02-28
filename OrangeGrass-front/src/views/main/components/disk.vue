@@ -2,7 +2,7 @@
   <div class="disk-main">
     <div class="disk-header">
       <div class="disk-header-logo" style="cursor:pointer;" @click="()=>{this.$router.push('/main')}">
-        <img height="59px" width="59px" src="@/assets/images/disklogo.png">
+        <img height="59px" width="59px" src="@/assets/images/logo.png">
       </div>
       <div class="disk-header-content">
         <div class="disk-header-content-item" style="display: flex;justify-content: center;align-items: center">

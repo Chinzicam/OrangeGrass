@@ -41,8 +41,6 @@ export default {
       },
       userId: localStorage.getItem('userId'),
       username: localStorage.getItem('username'),
-      // userId: '9d164a8092f949b38daa819813d5db01',
-      // userId: 'c8eade1f673041dd86a937e03a0c8350',
       defaultProps: {
         children: 'subs',
         label: 'name'

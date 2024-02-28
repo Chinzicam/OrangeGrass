@@ -174,7 +174,7 @@ export default {
   text-align: left;
 }
 .file_detail_body {
-  font-size: 5px;
+  font-size: 12px;
   text-align: left;
   margin-top: 30px;
 }
@@ -217,7 +217,7 @@ export default {
 .folder_detail_body {
   display: flex;
   flex-flow: column;
-  font-size: 5px;
+  font-size: 13px;
   /*text-align: left;*/
   margin-top: 30px;
 }

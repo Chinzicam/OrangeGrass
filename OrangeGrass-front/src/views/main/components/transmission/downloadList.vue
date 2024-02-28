@@ -25,10 +25,7 @@
 
             <span style="padding-left: 140px" v-if="file.downloadPersentage<100"  link @click="changeDownloadStop(file)">
                <img width="16px" height="16px" src="@/assets/images/start.png" v-if="file.downloadingStop == false">
-                  <!--            <el-icon size="20" v-if="uploadFile.uploadingStop == false"-->
-                  <!--            >好啊</el-icon>-->
                <img width="16px" height="16px" src="@/assets/images/pause.png" v-else>
-                  <!--            <el-icon size="20" v-else>不好</el-icon>-->
             </span>
           </div>
         </div>
