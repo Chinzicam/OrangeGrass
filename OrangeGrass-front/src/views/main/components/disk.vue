@@ -81,7 +81,7 @@
           </div>
         </div>
         <div style="width: 80px;padding-left: 20px">
-          <el-button round size="small" @click="goToAuthorPage">支持作者</el-button>
+          <el-button round size="small" @click="goToAuthorPage" target="_blank" >支持作者</el-button>
         </div>
       </div>
     </div>
@@ -396,7 +396,7 @@ export default {
       this.selectedFriendId = val
     },
     goToAuthorPage() {
-      window.location.href = 'http://www.chinzicam.top/';
+      window.open('https://www.chinzicam.top/', '_blank');
     }
   }
 }

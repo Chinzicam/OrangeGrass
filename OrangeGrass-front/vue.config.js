@@ -7,6 +7,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+
 const name = defaultSettings.title // 网址标题
 const port = 8089 // 端口配置
 
