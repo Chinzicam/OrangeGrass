@@ -77,7 +77,8 @@ export function getAdvertisementThumbnail(val) {
 
 // 使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
-  let x = ['用户文件管理','权限管理','申诉管理','举报管理','日志管理','系统设置','图片管理']
+  // let x = ['用户文件管理','权限管理','申诉管理','举报管理','日志管理','系统设置','图片管理']
+  let x = ['用户文件管理','申诉管理','举报管理','日志管理','系统设置','图片管理']
 
   if (to.name === 'login' || to.name === 'Login') {
     next()

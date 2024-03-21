@@ -3,7 +3,7 @@
     <div style="margin-bottom: 20px">
       <el-button @click="currentChange(0)">查看未处理的图片</el-button>
       <el-button @click="currentChange(1)">查看已处理的图片</el-button>
-      <el-button style="margin-left: 100px" @click="checkUncheckedImages" v-if="current === 0&&this.images.length > 0">后台鉴黄</el-button>
+<!--      <el-button style="margin-left: 100px" @click="checkUncheckedImages" v-if="current === 0&&this.images.length > 0">后台鉴黄</el-button>-->
     </div>
     <el-table v-loading="loading" :data="images">
       <el-table-column width="170px">

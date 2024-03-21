@@ -96,12 +96,12 @@ export default new Router({
           name: '用户文件管理',
           meta: { title: '用户文件管理'}
         },
-        {
-          path: '/permission',
-          component: permissionManagement,
-          name: '权限管理',
-          meta: { title: '权限管理'}
-        },
+        // {
+        //   path: '/permission',
+        //   component: permissionManagement,
+        //   name: '权限管理',
+        //   meta: { title: '权限管理'}
+        // },
         {
           path: '/images',
           name: 'images',

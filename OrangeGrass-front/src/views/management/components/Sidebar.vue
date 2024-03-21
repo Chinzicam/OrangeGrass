@@ -98,11 +98,11 @@ export default {
           index: 'userfile',
           icon: 'el-icon-lx-home',
         },
-        {
-          title: '权限管理',
-          index: 'permission',
-          icon: 'el-icon-lx-home',
-        },
+        // {
+        //   title: '权限管理',
+        //   index: 'permission',
+        //   icon: 'el-icon-lx-home',
+        // },
         {
           title: '图片管理',
           index: 'images',
