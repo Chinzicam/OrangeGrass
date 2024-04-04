@@ -7,7 +7,7 @@
         </div>
         <div class="logo" style="cursor:pointer;"
              @click="()=>{this.$router.push('/main')}">
-          网盘管理系统
+          🍊 橙 草 云
         </div>
         <div class="header-right">
             <div class="header-user-con">
