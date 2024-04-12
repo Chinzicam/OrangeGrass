@@ -5,8 +5,16 @@
 
 ## 版本
 
->node-> v16.17.0
+开发环境：IDEA，WebStorm
 
-> npm-> 8.19.4
+开发系统：Win 11
 
-> jdk->Java 8
+Nodejs版本：v16.17.0
+
+MySQL版本：8.0.32
+
+Java版本：Java8
+
+数据库工具：Navicat Premium 15
+
+浏览器：Edge

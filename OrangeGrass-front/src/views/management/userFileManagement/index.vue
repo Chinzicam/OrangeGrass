@@ -21,7 +21,7 @@
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button round type="primary" size="small" @click="handleUpdate(scope.row)">查看用户</el-button>
-            <el-button round type="success" size="small" @click="handlePermissionManage(scope.row)">分配权限</el-button>
+<!--            <el-button round type="success" size="small" @click="handlePermissionManage(scope.row)">分配权限</el-button>-->
             <el-button round type="warning" size="small" @click="getFiles(scope.row)">查看文件</el-button>
           </template>
         </el-table-column>
@@ -69,18 +69,18 @@
               {{new Date(scope.row.createTime).strftime('%G年%n月%e日%k时%M分%S秒','zh')}}
             </template>
           </el-table-column>
-          <el-table-column prop="nsfwScore" label="机器鉴定分数" width="120">
-            <template slot-scope="scope">
-              <div style="display: flex;justify-content: center;align-items: center">
-                <el-progress
-                  style="width: 70px"
-                  :color="colors"
-                  :show-text="false"
-                  :percentage="parseInt(scope.row.nsfwScore * 100)"></el-progress>
-                <span style="margin-left: 10px">{{parseInt(scope.row.nsfwScore * 100)}}</span>
-              </div>
-            </template>
-          </el-table-column>
+<!--          <el-table-column prop="nsfwScore" label="机器鉴定分数" width="120">-->
+<!--            <template slot-scope="scope">-->
+<!--              <div style="display: flex;justify-content: center;align-items: center">-->
+<!--                <el-progress-->
+<!--                  style="width: 70px"-->
+<!--                  :color="colors"-->
+<!--                  :show-text="false"-->
+<!--                  :percentage="parseInt(scope.row.nsfwScore * 100)"></el-progress>-->
+<!--                <span style="margin-left: 10px">{{parseInt(scope.row.nsfwScore * 100)}}</span>-->
+<!--              </div>-->
+<!--            </template>-->
+<!--          </el-table-column>-->
           <el-table-column prop="isBan" label="是否禁止">
             <template slot-scope="scope">
               {{isBanFormatter(scope.row)}}

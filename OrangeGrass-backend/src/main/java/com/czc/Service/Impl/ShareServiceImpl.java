@@ -116,29 +116,44 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper,ShareRecord> imple
                                         boolean autoGenerateEnable,
                                         boolean extractCodeNeeded,
                                         String extractCode){
+        // 根据u2fId查询出User2FileDTO
         User2FileDTO u2f = voService.selectUser2FileDTOById(u2fId);
+        // 创建ShareRecord对象
         ShareRecord shareRecord = new ShareRecord();
+        // 如果autoGenerateEnable为true，则自动生成extractCode
         if (autoGenerateEnable) {
             extractCode = generateExtractCode();
         }
+        // 如果extractCodeNeeded为false，则设置shareRecord的shareType为SHARE_FREE，extractCode为null
         if (!extractCodeNeeded) {
             extractCode = null;
             shareRecord.setShareType(SHARE_FREE);
         }
+        // 设置shareRecord的shareType为SHARE_NEED_EXTRACTCODE
         shareRecord.setShareType(SHARE_NEED_EXTRACTCODE);
+        // 设置shareRecord的xName为u2f的fileName
         shareRecord.setXName(u2f.getFileName());
+        // 设置shareRecord的fromUserId为u2f的userId
         shareRecord.setFromUserId(u2f.getUserId());
+        // 设置shareRecord的extractCode为extractCode
         shareRecord.setExtractCode(extractCode);
+        // 设置shareRecord的id为随机生成的UUID
         shareRecord.setId(UUID.randomUUID().toString().replaceAll("-",""));
+        // 设置shareRecord的xId为u2f的fileId
         shareRecord.setXId(u2f.getFileId());
+        // 设置shareRecord的createTime为当前时间
         shareRecord.setCreateTime(new Date());
+        // 设置shareRecord的xType为FILE
         shareRecord.setXType("FILE");
+        // 创建HashMap对象
         Map<String,String> res = new HashMap<>();
+        // 如果save(shareRecord)成功，则将shareId和extractCode放入res中，并返回res
         if (this.save(shareRecord)) {
             res.put("shareId",shareRecord.getId());
             res.put("extractCode",shareRecord.getExtractCode());
             return res;
         }
+        // 如果save(shareRecord)失败，则返回null
         return null;
     }
 
