@@ -22,6 +22,10 @@ import java.util.Random;
 
 import static com.czc.Constant.FileConstant.SERVER_IP;
 
+/**
+ * @author czc
+ * 广告
+ */
 @RequestMapping("/api/advertise")
 @RestController
 public class AdvertiseController {

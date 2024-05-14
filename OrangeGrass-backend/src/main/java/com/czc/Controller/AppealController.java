@@ -17,6 +17,10 @@ import static com.czc.Constant.AppealConstant.*;
 import static com.czc.Constant.NSFW.NSFW_BAN;
 import static com.czc.Constant.NSFW.NSFW_NOT_BAN;
 
+/**
+ * @author czc
+ * 审核
+ */
 @RequestMapping("/api/appeal")
 @RestController
 public class AppealController{
